@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/filter.js"></script>
+    <link rel="stylesheet" href="myStyle.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+    <title>ang Js</title>
+</head>
+<body ng-app="myModule">
+    <style>
+        .imgCC {
+        width:100%;
+        height: auto;
+        }
+    </style>
+    <div ng-controller="myController">
+        <label>
+            Rows to Display
+            <input type="number" step="1" min="0" max="5" ng-model="rowLimit">
+            <select ng-Model="sortColumn">
+                <option value="name">name ASC</option>
+                <option value="gender">gender ASC</option>
+                <option value="dob">dob ASC</option>
+                <option value="-salary">Sal DESC</option>
+            </select>
+        </label>
+        <h1>{{sortColumn}}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th ng-click="sortData('name')">
+                        name
+                        <div ng-class="getSortClass('name')"></div>
+                    </th>
+                    <th ng-click="sortData('dob')">DOB
+                        <div ng-class="getSortClass('dob')"></div>
+                    </th>
+                    <th ng-click="sortData('gender')">Gender
+                        <div ng-class="getSortClass('gender')"></div>
+                    </th>
+                    <th ng-click="sortData('salary')">Salary(number)
+                        <div ng-class="getSortClass('salary')"></div>
+                    </th>
+                    <th ng-click="sortData('salary')">Salary(currency)
+                        <div ng-class="getSortClass('salary')"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in employees | limitTo:rowLimit | orderBy:sortColumn:reverseSort">
+                       <td>{{emp.name | uppercase}}</td> 
+                       <td>{{emp.dob | date:"dd/MM/yyyy"}}</td> 
+                       <td>{{emp.gender| lowercase}}</td> 
+                       <td>{{emp.salary | number: 2}}</td> 
+                       <td>{{emp.salary | currency:""}}</td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-controller="another">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Likes</th>
+                    <th>DisLikes</th>
+                    <th>likes/DisLikes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tech in technologies">
+                    <td>{{tech.name}}</td>    
+                    <td>{{tech.likes}}</td>    
+                    <td>{{tech.dislikes}}</td>    
+                    <td>
+                        <button ng-click="incLike(tech)">likes</button>
+                        <button ng-click="incDisLike(tech)">Dislikes</button>
+                    </td>    
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-controller="search-controller">
+        <br><br/>   
+            <label>
+                <input type="text" placeholder="search Name . . ." ng-model="searchText.name">
+            </label>
+            <label>
+                <input type="text" placeholder="search City . . ." ng-model="searchText.city">
+            </label>
+            <label>
+                <input type="checkbox" ng-model="exactMatch">
+            </label>
+            <br><br/>   
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>gender</th>
+                        <th>salary</th>
+                        <th>city</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="emp in employees | filter:searchText:exactMatch">
+                        <td>{{emp.name}}</td>    
+                        <td>{{emp.gender | gender}}</td>    
+                        <td>{{emp.salary}}</td>    
+                        <td>{{emp.city}}</td>    
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</body>
+</html>
