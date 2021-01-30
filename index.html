@@ -96,13 +96,19 @@
             <label>
                 <input type="checkbox" ng-model="exactMatch">
             </label>
+            <div>
+                <label> Hide salary : 
+                    <input type="checkbox" ng-model="hideSalary">
+                </label>
+            </div>
             <br><br/>   
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>gender</th>
-                        <th>salary</th>
+                        <th ng-show="!hideSalary">salary</th>
+                        <th ng-hide="!hideSalary">salary</th>
                         <th>city</th>
                     </tr>
                 </thead>
@@ -110,7 +116,8 @@
                     <tr ng-repeat="emp in employees | filter:searchText:exactMatch">
                         <td>{{emp.name}}</td>    
                         <td>{{emp.gender | gender}}</td>    
-                        <td>{{emp.salary}}</td>    
+                        <td ng-show="!hideSalary">{{emp.salary}}</td>    
+                        <td ng-hide="!hideSalary">####</td>    
                         <td>{{emp.city}}</td>    
                     </tr>
                 </tbody>
