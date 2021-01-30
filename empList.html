@@ -1,0 +1,7 @@
+<ul ng-repeat="emp in empList">
+    <li>{{emp.department}}
+        <ul ng-repeat="e in emp.name">
+            <li>{{e.person}}</li>
+        </ul>
+    </li>
+</ul>

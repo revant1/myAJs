@@ -6,6 +6,7 @@
     <script src="scripts/angular.js"></script>
     <script src="scripts/script.js"></script>
     <script src="scripts/filter.js"></script>
+    <script src="scripts/stringService.js"></script>
     <link rel="stylesheet" href="myStyle.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
     <title>ang Js</title>
@@ -124,8 +125,20 @@
             </table>
     </div>
     <div ng-controller="includeTableHtml">
-        <div ng-include="'empTable.html'">
-        </div>
+        <div ng-include="employeeView"></div>
+        <br><br/>
+        <br><br/>
+        <select ng-Model="empListView">
+            <option value="empTable.html">employ view </option>
+            <option value="empList.html">emp list</option>
+        </select>
+        <div ng-include="empListView"></div>
+    </div>
+    <div ng-controller="myService">
+        <div ng-include="userView"></div>
+    </div>
+    <div ng-controller="StringService">
+        <div ng-include="'string.html'"></div>
     </div>
 </body>
 </html>

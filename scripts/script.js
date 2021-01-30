@@ -99,5 +99,33 @@ myApp.controller("includeTableHtml",function($scope) {
         {name:"Bpn", dob: new Date("November 3,1988") ,gender:"2",salary:"12345.154",city:"Vijayawada"},
         {name:"Bpn", dob: new Date("November 3,1988") ,gender:"2",salary:"12345.154",city:"Hyderabad"},
         {name:"Zon", dob: new Date("June 2,1950") ,gender:"3",salary:"77989.154",city:"Hyderabad"},
-    ]
+    ];
+
+    $scope.employeeView = "empTable.html";
+    
+    $scope.empList = [
+        {department:"Mechanical", name:[{person:'Ravi'},{person:'raman'},{person:'Parvan'}]},
+        {department:"Electrical", name:[{person:'Ravan'},{person:'Vibhishan'},{person:'sukrith'}]},
+        {department:"Chemical", name:[{person:'felloe'},{person:'yousof'},{person:'revan'}]},
+    ];
+    $scope.empListView = "empList.html";
+})
+
+
+myApp.controller('myService',function($scope,$http,$log) {
+    $http.get("https://jsonplaceholder.typicode.com/users")
+    .then(function(response) {
+        $scope.users = response.data
+    },function(reason){
+        $scope.error = reason.xhrStatus;
+        $log.info(reason)
+    })
+    $scope.userView = "userList.html";
+});
+
+myApp.controller('StringService',function($scope,stringService){
+    $scope.output = '';
+    $scope.convert = function(input) {
+        $scope.output = stringService.processString(input)
+    }
 })
