@@ -91,3 +91,13 @@ myApp.controller('search-controller',function($scope){
     ];
 
 })
+
+myApp.controller("includeTableHtml",function($scope) {
+    $scope.employees = [
+        {name:"Ron", dob: new Date("November 23,1988") ,gender:"1",salary:"55000.154",city:"Hyderabad"},
+        {name:"Bpn", dob: new Date("November 3,1988") ,gender:"2",salary:"12345.154",city:"Guntur"},
+        {name:"Bpn", dob: new Date("November 3,1988") ,gender:"2",salary:"12345.154",city:"Vijayawada"},
+        {name:"Bpn", dob: new Date("November 3,1988") ,gender:"2",salary:"12345.154",city:"Hyderabad"},
+        {name:"Zon", dob: new Date("June 2,1950") ,gender:"3",salary:"77989.154",city:"Hyderabad"},
+    ]
+})
